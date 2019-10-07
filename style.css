@@ -49,27 +49,27 @@ h1{
 }
 
 .clear:hover, .reset:hover{
-    transform: scale(1.1);
+    transform: scale(1.2);
     background-color: rgb(255, 255, 255);
     color: black;
     border: 2px solid black;
 }
 
 .black:hover{
-    transform: scale(1.1);
+    transform: scale(1.2);
     background-color: black;
     color: white;
     border: 2px solid white;
 }
 
 .shade:hover{
-    transform:scale(1.1);
+    transform:scale(1.2);
     border: 2px solid black;
     background-image: linear-gradient(to right, white, black);
 }
 
 .random:hover{
-    transform: scale(1.1);
+    transform: scale(1.2);
     border: 2px solid black;
     background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
 }

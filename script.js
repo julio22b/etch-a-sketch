@@ -35,7 +35,7 @@ function newGrid(){
     let askSize = prompt('How many squares per side will the new grid be?', '16')
     let newSize = parseInt(askSize)
     if(newSize > 100){
-        return alert('Please use a number lower than 100')
+        return alert('Please enter a number lower than 100')
     }
     const fragment = document.createDocumentFragment()
     container.innerHTML = ''
@@ -114,16 +114,21 @@ btnBlack.addEventListener('click', function(){
 /* shade button*/
 
 const btnShade = document.querySelector('.shade')
-btnShade.addEventListener('click', function(e){
+btnShade.addEventListener('click', function(){
+    
 
     for(let i = 0; i < divs.length; i++){
-      
-        divs[i].removeEventListener('mouseover', arguments.callee, false)
-        divs[i].addEventListener('mouseover', function(){
+            let opacity = Number(divs[i].style.opacity)
             
-            divs[i].style.backgroundColor = 'black'
-            divs[i].style.opacity -= -0.1   
-        })
+                divs[i].removeEventListener('mouseover', arguments.callee, false)
+            divs[i].addEventListener('mouseover', function(e){
+        
+                e.target.style.backgroundColor = 'black'
+                e.target.style.opacity -= -0.1   
+            })
+            
+            
+         
     }
     
 })
