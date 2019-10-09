@@ -105,8 +105,8 @@ btnBlack.addEventListener('click', function(){
     for(let i = 0; i < divs.length; i++){
         divs[i].removeEventListener('mouseover', arguments.callee, false)
         divs[i].addEventListener('mouseover', function(){
-            divs[i].style.opacity = 1
-            divs[i].style.backgroundColor = 'black'
+        divs[i].style.opacity = 1
+        divs[i].style.backgroundColor = 'black'
         })
     }
 })
@@ -118,17 +118,12 @@ btnShade.addEventListener('click', function(){
     
 
     for(let i = 0; i < divs.length; i++){
-            let opacity = Number(divs[i].style.opacity)
             
-                divs[i].removeEventListener('mouseover', arguments.callee, false)
-            divs[i].addEventListener('mouseover', function(e){
-        
-                e.target.style.backgroundColor = 'black'
-                e.target.style.opacity -= -0.1   
-            })
-            
-            
-         
+        divs[i].removeEventListener('mouseover', arguments.callee, false)
+        divs[i].addEventListener('mouseover', function(e){
+            e.target.style.backgroundColor = 'black'
+            e.target.style.opacity -= -0.1   
+        })       
     }
     
 })
