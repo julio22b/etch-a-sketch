@@ -75,7 +75,7 @@ function randomColor(){
         for(let i = 0; i < divs.length; i++){
             divs[i].removeEventListener('mouseover', arguments.callee, false)
             divs[i].addEventListener('mouseover', function(){
-                divs[i].style.opacity = 1
+                divs[i].style.opacity = ''
                 const randomRed = Math.round(Math.random()* 256);
                 const randomGreen = Math.round(Math.random()* 256);
                 const randomBlue = Math.round(Math.random()* 256);
@@ -94,7 +94,7 @@ const btnClear = document.querySelector('.clear')
 btnClear.addEventListener('click', function(){
     for(let i = 0; i < divs.length; i++){
         divs[i].style.backgroundColor = 'white'
-        divs[i].style.opacity = 1
+        divs[i].style.opacity = ''
     }
 })
 
@@ -105,7 +105,7 @@ btnBlack.addEventListener('click', function(){
     for(let i = 0; i < divs.length; i++){
         divs[i].removeEventListener('mouseover', arguments.callee, false)
         divs[i].addEventListener('mouseover', function(){
-        divs[i].style.opacity = 1
+        divs[i].style.opacity = ''
         divs[i].style.backgroundColor = 'black'
         })
     }
