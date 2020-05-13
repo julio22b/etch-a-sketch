@@ -34,6 +34,7 @@ h1 {
     height: 730px;
     border: 5px solid black;
     margin: 0 auto;
+    position: relative;
 }
 .reset,
 .random,
@@ -47,9 +48,9 @@ h1 {
     color: rgb(255, 255, 255);
     border: 2px solid white;
     text-align: center;
-    border-radius: 5px;
     font-family: Roboto;
     transition: all 100ms ease-in;
+    letter-spacing: 1px;
 }
 
 .clear:hover,
@@ -83,7 +84,7 @@ h1 {
 .shade.active {
     transform: scale(1.1);
     border: 2px solid black;
-    background-image: linear-gradient(to right, white, black);
+    animation: shader 5s linear infinite;
     text-shadow: 0 0 5px black;
 }
 
@@ -97,8 +98,8 @@ h1 {
 .random.active {
     transform: scale(1.1);
     border: 2px solid black;
-    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
     text-shadow: 0px 0px 5px black;
+    animation: rainbow 7s linear infinite;
 }
 
 .container {
@@ -114,4 +115,67 @@ h1 {
 }
 .box:hover {
     transform: scale(1.2);
+}
+
+.main .buttons {
+    position: absolute;
+    top: 5%;
+    left: -30%;
+    flex-direction: column;
+    width: 20%;
+    justify-content: space-between;
+}
+
+.main .buttons button {
+    margin-bottom: 2em;
+    padding: 0.8em 0;
+    line-height: 1.5em;
+    font-weight: bold;
+    background-color: #56d998;
+    border: 2px solid white;
+    color: white;
+    text-shadow: 0 0 5px black;
+    transition: transform 100ms ease-in;
+    letter-spacing: 1px;
+}
+
+.main .buttons button.active {
+    transform: scale(1.15);
+    background-color: #1b4731;
+}
+
+@keyframes rainbow {
+    0% {
+        background-color: red;
+    }
+    20% {
+        background-color: orange;
+    }
+    35% {
+        background-color: yellow;
+    }
+    50% {
+        background-color: green;
+    }
+    65% {
+        background-color: blue;
+    }
+    80% {
+        background-color: indigo;
+    }
+    100% {
+        background-color: violet;
+    }
+}
+
+@keyframes shader {
+    0% {
+        background-color: white;
+    }
+    50% {
+        background-color: black;
+    }
+    100% {
+        background-color: white;
+    }
 }

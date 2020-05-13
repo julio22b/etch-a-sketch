@@ -1,6 +1,7 @@
 const container = document.querySelector('.container');
 const fragment = document.createDocumentFragment();
-const buttons = document.querySelectorAll('.buttons button');
+const buttons = document.querySelectorAll('body > .buttons button');
+let dragging = false;
 
 /*create starting grid*/
 
@@ -9,6 +10,9 @@ for (let i = 0; i < 24 * 24; i++) {
     gridBox.classList.add('box');
     gridBox.style.width = `${720 / 24}px`;
     gridBox.style.height = `${720 / 24}px`;
+    gridBox.addEventListener('mousedown', () => (dragging = false));
+    gridBox.addEventListener('mousemove', () => (dragging = true));
+    gridBox.addEventListener('mouseup', () => console.log(dragging ? 'drag' : 'click'));
     fragment.appendChild(gridBox);
 }
 
@@ -19,11 +23,15 @@ container.appendChild(fragment);
 let gridDivs = container.getElementsByTagName('div');
 let divs = Array.from(gridDivs);
 
-for (let i = 0; i < divs.length; i++) {
-    divs[i].addEventListener('mouseover', function () {
-        divs[i].style.backgroundColor = 'black';
-    });
+function drawBlack(eventType) {
+    for (let i = 0; i < divs.length; i++) {
+        divs[i].addEventListener(`${eventType}`, function () {
+            divs[i].style.backgroundColor = 'black';
+        });
+    }
 }
+
+drawBlack('click');
 
 /* ask user for a newn grid size and create it*/
 
@@ -124,3 +132,14 @@ btnShade.addEventListener('click', function () {
 function removeActive() {
     buttons.forEach((btn) => btn.classList.remove('active'));
 }
+
+// click and drag to draw
+
+const drawBtns = document.querySelectorAll('.main .buttons button');
+drawBtns[0].classList.add('active');
+drawBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        drawBtns.forEach((btn) => btn.classList.remove('active'));
+        e.target.classList.add('active');
+    });
+});
