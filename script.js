@@ -23,16 +23,6 @@ container.appendChild(fragment);
 let gridDivs = container.getElementsByTagName('div');
 let divs = Array.from(gridDivs);
 
-function drawBlack(eventType) {
-    for (let i = 0; i < divs.length; i++) {
-        divs[i].addEventListener(`${eventType}`, function () {
-            divs[i].style.backgroundColor = 'black';
-        });
-    }
-}
-
-drawBlack('click');
-
 /* ask user for a newn grid size and create it*/
 
 function newGrid() {
@@ -62,39 +52,36 @@ function newGrid() {
 
 const btnReset = document.querySelector('.reset');
 btnReset.addEventListener('click', function () {
-    for (let i = 0; i < divs.length; i++) {
-        divs[i].style.backgroundColor = 'white';
-    }
+    divs.forEach((div) => (div.style.backgroundColor = 'white'));
     newGrid();
-    randomColor();
 });
 
 const btnRainbow = document.querySelector('.random');
-btnRainbow.addEventListener('click', randomColor);
-
-function randomColor() {
+btnRainbow.addEventListener('click', function changeBrush() {
     removeActive();
     btnRainbow.classList.add('active');
-    for (let i = 0; i < divs.length; i++) {
-        divs[i].removeEventListener('mouseover', arguments.callee, false);
-        divs[i].addEventListener('mouseover', function () {
-            divs[i].style.opacity = '';
+    divs.forEach((div) => {
+        div.removeEventListener('mouseover', blackBrush);
+        div.addEventListener('mouseover', function rainbowBrush() {
+            div.style.opacity = '';
             const randomRed = Math.round(Math.random() * 256);
             const randomGreen = Math.round(Math.random() * 256);
             const randomBlue = Math.round(Math.random() * 256);
-            divs[i].style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
+            div.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
         });
-    }
-}
+    });
+});
+
+function rainbowBrush() {}
 
 /* clear button*/
 
 const btnClear = document.querySelector('.clear');
 btnClear.addEventListener('click', function () {
-    for (let i = 0; i < divs.length; i++) {
+    divs.forEach((div) => {
         divs[i].style.backgroundColor = 'white';
         divs[i].style.opacity = '';
-    }
+    });
 });
 
 /* black button*/
@@ -102,17 +89,18 @@ btnClear.addEventListener('click', function () {
 const btnBlack = document.querySelector('.black');
 btnBlack.classList.add('active');
 
-btnBlack.addEventListener('click', function () {
+btnBlack.addEventListener('click', function changeBrush() {
     removeActive();
     btnBlack.classList.add('active');
-    for (let i = 0; i < divs.length; i++) {
-        divs[i].removeEventListener('mouseover', arguments.callee, false);
-        divs[i].addEventListener('mouseover', function () {
-            divs[i].style.opacity = '';
-            divs[i].style.backgroundColor = 'black';
-        });
-    }
+    divs.forEach((div) =>
+        div.addEventListener('mouseover', function blackBrush() {
+            div.style.opacity = '';
+            div.style.backgroundColor = 'black';
+        }),
+    );
 });
+
+btnBlack.click();
 
 /* shade button*/
 
