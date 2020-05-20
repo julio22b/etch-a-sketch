@@ -1,5 +1,7 @@
 const container = document.querySelector('.container');
 const buttons = document.querySelectorAll('body > .buttons button');
+const hoverDraw = document.querySelector('.h-draw');
+const dragDraw = document.querySelector('.d-draw');
 
 /*create starting grid*/
 function createGrid(number) {
@@ -115,15 +117,23 @@ btnClear.addEventListener('click', function () {
 });
 
 // click and drag to draw
-
-const drawBtns = document.querySelectorAll('.main .buttons button');
-drawBtns[0].classList.add('active');
-drawBtns.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-        drawBtns.forEach((btn) => btn.classList.remove('active'));
-        e.target.classList.add('active');
-    });
+hoverDraw.addEventListener('click', () => {
+    dragAndDrawClassController(dragDraw, hoverDraw, 'drag-to-draw', 'hover-to-draw');
 });
+
+dragDraw.addEventListener('click', () => {
+    dragAndDrawClassController(hoverDraw, dragDraw, 'hover-to-draw', 'drag-to-draw');
+});
+
+hoverDraw.click();
+
+function dragAndDrawClassController(inactiveBtn, activeBtn, removeClass, addClass) {
+    inactiveBtn.classList.remove('active');
+    activeBtn.classList.add('active');
+    const divs = container.querySelectorAll('div');
+    divs.forEach((div) => div.classList.remove(removeClass));
+    divs.forEach((div) => div.classList.add(addClass));
+}
 
 function removeActive() {
     buttons.forEach((btn) => btn.classList.remove('active'));
