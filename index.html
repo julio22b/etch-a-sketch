@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Etch-a-Sketch</title>
+        <link rel="stylesheet" href="./style.css" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="blanket">
+            <div class="canvas">
+                <p>Right click to save the image <button class="close-canvas">X</button></p>
+            </div>
+        </div>
+        <h1>Etch-a-Sketch</h1>
+        <div class="buttons">
+            <button class="random">Random</button>
+            <button class="shade">Shade</button>
+            <button class="black">Black</button>
+            <button class="reset">New Size</button>
+            <button class="clear">Clear</button>
+        </div>
+        <div class="main">
+            <div class="buttons">
+                <button class="h-draw">Draw on hover</button>
+                <button class="d-draw">Draw on drag</button>
+                <button class="remove-borders">Remove borders</button>
+                <button class="html2canvas">Save as image</button>
+            </div>
+            <div class="container"></div>
+        </div>
+
+        <script src="./main.js" type="module"></script>
+    </body>
+</html>

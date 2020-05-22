@@ -1,0 +1,266 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 0px;
+}
+
+body {
+    background: url(https://images.unsplash.com/6/blurred_lines.jpeg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-bottom: 50px;
+}
+
+h1 {
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 5em;
+    color: hsl(0, 0%, 97%);
+    text-shadow: 5px 5px black;
+    line-height: 1.5em;
+    position: relative;
+}
+
+.buttons {
+    margin: 2em auto;
+    display: flex;
+    justify-content: space-between;
+    width: 720px;
+    text-align: center;
+    position: relative;
+}
+
+.main {
+    width: 730px;
+    height: 730px;
+    border: 5px solid black;
+    margin: 0 auto;
+    position: relative;
+}
+
+.reset,
+.random,
+.shade,
+.clear,
+.black {
+    padding: 18px 25px;
+    font-weight: 600;
+    background-color: #0a2066;
+    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+    border: 2px solid white;
+    text-align: center;
+    font-family: Roboto;
+    transition: all 100ms ease-in;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.clear:hover,
+.reset:hover {
+    transform: scale(1.2);
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border: 2px solid black;
+}
+
+.black:hover {
+    transform: scale(1.2);
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+}
+
+.black.active {
+    transform: scale(1.1);
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+}
+
+.shade:hover {
+    transform: scale(1.2);
+    border: 2px solid black;
+    background-image: linear-gradient(to right, white, black);
+}
+
+.shade.active {
+    transform: scale(1.1);
+    border: 2px solid black;
+    animation: shader 5s linear infinite;
+    text-shadow: 0 0 5px black;
+}
+
+.random:hover {
+    transform: scale(1.2);
+    border: 2px solid black;
+    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    text-shadow: 0px 0px 5px black;
+}
+
+.random.active {
+    transform: scale(1.1);
+    border: 2px solid black;
+    text-shadow: 0px 0px 5px black;
+    animation: rainbow 7s linear infinite;
+}
+
+.container {
+    width: 720px;
+    height: 720px;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.box {
+    display: inline-block;
+    border: 1px solid rgb(150, 150, 150);
+}
+
+.box.no-border {
+    border: none;
+}
+
+.box:hover {
+    transform: scale(1.2);
+}
+
+.main .buttons {
+    position: absolute;
+    top: 5%;
+    left: -30%;
+    flex-direction: column;
+    width: 20%;
+    justify-content: space-between;
+}
+
+.main .buttons button {
+    margin-bottom: 2em;
+    padding: 0.8em 0;
+    line-height: 1.5em;
+    font-weight: bold;
+    background-color: #56d998;
+    border: 2px solid white;
+    color: white;
+    text-shadow: 0 0 5px black;
+    transition: transform 100ms ease-in;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.main .buttons button.active {
+    transform: scale(1.15);
+    background-color: #1b4731;
+}
+
+.main .buttons .remove-borders {
+    background-color: #c9b390;
+}
+
+.main .buttons .html2canvas {
+    background-color: #af3c66;
+}
+
+.blanket {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 128vh;
+    min-height: 1005px;
+    transition: background-color 250ms ease-in;
+}
+
+.blanket.darken {
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 312311;
+}
+
+.canvas {
+    position: relative;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 250ms ease-in;
+}
+
+.canvas p {
+    height: 30px;
+    color: white;
+    font-weight: bold;
+    text-indent: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5em;
+    font-size: 1.2rem;
+}
+
+.canvas.active {
+    opacity: 1;
+}
+
+.close-canvas {
+    font-size: 2em;
+    background: transparent;
+    border: none;
+    z-index: 20;
+    height: 100%;
+    color: white;
+}
+
+@keyframes rainbow {
+    100%,
+    0% {
+        background-color: rgb(255, 0, 0);
+    }
+    8% {
+        background-color: rgb(255, 127, 0);
+    }
+    16% {
+        background-color: rgb(255, 255, 0);
+    }
+    25% {
+        background-color: rgb(127, 255, 0);
+    }
+    33% {
+        background-color: rgb(0, 255, 0);
+    }
+    41% {
+        background-color: rgb(0, 255, 127);
+    }
+    50% {
+        background-color: rgb(0, 255, 255);
+    }
+    58% {
+        background-color: rgb(0, 127, 255);
+    }
+    66% {
+        background-color: rgb(0, 0, 255);
+    }
+    75% {
+        background-color: rgb(127, 0, 255);
+    }
+    83% {
+        background-color: rgb(255, 0, 255);
+    }
+    91% {
+        background-color: rgb(255, 0, 127);
+    }
+}
+
+@keyframes shader {
+    0% {
+        background-color: white;
+    }
+    50% {
+        background-color: black;
+    }
+    100% {
+        background-color: white;
+    }
+}
