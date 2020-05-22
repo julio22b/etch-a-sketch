@@ -1,3 +1,4 @@
+import html12canvas from 'html2canvas';
 const container = document.querySelector('.container');
 const buttons = document.querySelectorAll('body > .buttons button');
 const hoverDraw = document.querySelector('.h-draw');
@@ -29,19 +30,16 @@ function newGrid() {
     else if (newSize > 100) {
         return alert('Please enter a number lower than 100');
     }
+    const divs = container.querySelectorAll('div');
+    divs.forEach((div) => (div.style.backgroundColor = 'white'));
     createGrid(newSize);
-}
-
-function drawBlack() {
-    divs.forEach((div) => div.addEventListener('mouseover'));
+    btnBlack.click();
 }
 
 /* reset button will make the boxes' bgcolor white and ask for new grid*/
 
 const btnReset = document.querySelector('.reset');
 btnReset.addEventListener('click', function () {
-    const divs = container.querySelectorAll('div');
-    divs.forEach((div) => (div.style.backgroundColor = 'white'));
     newGrid();
 });
 
@@ -110,6 +108,7 @@ function shadeBrush() {
 
 const btnClear = document.querySelector('.clear');
 btnClear.addEventListener('click', function () {
+    const divs = container.querySelectorAll('div');
     divs.forEach((div) => {
         div.style.backgroundColor = 'white';
         div.style.opacity = '';
@@ -138,3 +137,50 @@ function dragAndDrawClassController(inactiveBtn, activeBtn, removeClass, addClas
 function removeActive() {
     buttons.forEach((btn) => btn.classList.remove('active'));
 }
+
+const makeImageBtn = document.querySelector('.html2canvas');
+makeImageBtn.addEventListener('click', () => {
+    makeImageBtn.disabled = true;
+    removePastCanvas();
+    const image = document.querySelector('.container');
+    const canvas = document.querySelector('.canvas');
+
+    window.scrollTo(0, 0);
+    html12canvas(image, { backgroundColor: null }).then((result) => {
+        canvas.appendChild(result);
+        canvas.classList.add('active');
+        document.querySelector('.blanket').classList.add('darken');
+    });
+
+    setTimeout(() => {
+        makeImageBtn.disabled = false;
+    }, 5000);
+});
+
+const closeCanvas = document.querySelector('.close-canvas');
+closeCanvas.addEventListener('click', () => {
+    const canvas = document.querySelector('.canvas');
+    canvas.classList.remove('active');
+    document.querySelector('.blanket').classList.remove('darken');
+    removePastCanvas();
+});
+
+function removePastCanvas() {
+    const canvas = document.querySelector('.canvas');
+    const canvasChildren = document.querySelectorAll('.canvas canvas');
+    for (let i = 0; i < canvasChildren.length; i++) {
+        canvas.removeChild(canvasChildren[i]);
+    }
+}
+
+const noBorderBtn = document.querySelector('.remove-borders');
+noBorderBtn.addEventListener('click', (e) => {
+    const divs = container.querySelectorAll('div');
+    if (e.target.textContent.includes('Remove')) {
+        divs.forEach((div) => div.classList.add('no-border'));
+        e.target.textContent = 'Add borders';
+    } else if (e.target.textContent.includes('Add')) {
+        divs.forEach((div) => div.classList.remove('no-border'));
+        e.target.textContent = 'Remove borders';
+    }
+});

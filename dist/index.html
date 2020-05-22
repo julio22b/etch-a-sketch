@@ -12,6 +12,11 @@
         />
     </head>
     <body>
+        <div class="blanket">
+            <div class="canvas">
+                <p>Right click to save the image <button class="close-canvas">X</button></p>
+            </div>
+        </div>
         <h1>Etch-a-Sketch</h1>
         <div class="buttons">
             <button class="random">Random</button>
@@ -20,15 +25,16 @@
             <button class="reset">New Size</button>
             <button class="clear">Clear</button>
         </div>
-
         <div class="main">
             <div class="buttons">
                 <button class="h-draw">Draw on hover</button>
                 <button class="d-draw">Draw on drag</button>
+                <button class="remove-borders">Remove borders</button>
+                <button class="html2canvas">Save as image</button>
             </div>
             <div class="container"></div>
         </div>
 
-        <script src="./script.js"></script>
+        <script src="./main.js" type="module"></script>
     </body>
 </html>

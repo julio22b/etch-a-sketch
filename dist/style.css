@@ -6,7 +6,7 @@
 }
 
 body {
-    background-image: url(https://images.unsplash.com/6/blurred_lines.jpeg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
+    background: url(https://images.unsplash.com/6/blurred_lines.jpeg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     padding-bottom: 50px;
@@ -20,6 +20,7 @@ h1 {
     color: hsl(0, 0%, 97%);
     text-shadow: 5px 5px black;
     line-height: 1.5em;
+    position: relative;
 }
 
 .buttons {
@@ -28,7 +29,9 @@ h1 {
     justify-content: space-between;
     width: 720px;
     text-align: center;
+    position: relative;
 }
+
 .main {
     width: 730px;
     height: 730px;
@@ -36,6 +39,7 @@ h1 {
     margin: 0 auto;
     position: relative;
 }
+
 .reset,
 .random,
 .shade,
@@ -51,6 +55,7 @@ h1 {
     font-family: Roboto;
     transition: all 100ms ease-in;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
 .clear:hover,
@@ -111,8 +116,13 @@ h1 {
 
 .box {
     display: inline-block;
-    border: 0.5px solid rgb(70, 70, 70);
+    border: 1px solid rgb(150, 150, 150);
 }
+
+.box.no-border {
+    border: none;
+}
+
 .box:hover {
     transform: scale(1.2);
 }
@@ -137,11 +147,70 @@ h1 {
     text-shadow: 0 0 5px black;
     transition: transform 100ms ease-in;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
 .main .buttons button.active {
     transform: scale(1.15);
     background-color: #1b4731;
+}
+
+.main .buttons .remove-borders {
+    background-color: #c9b390;
+}
+
+.main .buttons .html2canvas {
+    background-color: #af3c66;
+}
+
+.blanket {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 128vh;
+    min-height: 1005px;
+    transition: background-color 250ms ease-in;
+}
+
+.blanket.darken {
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 312311;
+}
+
+.canvas {
+    position: relative;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 250ms ease-in;
+}
+
+.canvas p {
+    height: 30px;
+    color: white;
+    font-weight: bold;
+    text-indent: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5em;
+    font-size: 1.2rem;
+}
+
+.canvas.active {
+    opacity: 1;
+}
+
+.close-canvas {
+    font-size: 2em;
+    background: transparent;
+    border: none;
+    z-index: 20;
+    height: 100%;
+    color: white;
 }
 
 @keyframes rainbow {
