@@ -183,7 +183,7 @@ h1 {
 
 .canvas {
     position: relative;
-    z-index: 10;
+    z-index: -10;
     opacity: 0;
     transition: opacity 250ms ease-in;
 }
@@ -202,6 +202,7 @@ h1 {
 
 .canvas.active {
     opacity: 1;
+    z-index: 10;
 }
 
 .close-canvas {

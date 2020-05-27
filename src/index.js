@@ -3,6 +3,7 @@ const container = document.querySelector('.container');
 const buttons = document.querySelectorAll('body > .buttons button');
 const hoverDraw = document.querySelector('.h-draw');
 const dragDraw = document.querySelector('.d-draw');
+let dragging = false;
 
 /*create starting grid*/
 function createGrid(number) {
@@ -56,11 +57,19 @@ btnRainbow.addEventListener('click', function changeBrush() {
 });
 
 function rainbowBrush() {
-    this.style.opacity = '';
-    const randomRed = Math.round(Math.random() * 256);
-    const randomGreen = Math.round(Math.random() * 256);
-    const randomBlue = Math.round(Math.random() * 256);
-    this.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
+    if (this.classList.contains('hover-to-draw') && !dragging) {
+        this.style.opacity = '';
+        const randomRed = Math.round(Math.random() * 256);
+        const randomGreen = Math.round(Math.random() * 256);
+        const randomBlue = Math.round(Math.random() * 256);
+        this.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
+    } else if (this.classList.contains('drag-to-draw') && dragging) {
+        this.style.opacity = '';
+        const randomRed = Math.round(Math.random() * 256);
+        const randomGreen = Math.round(Math.random() * 256);
+        const randomBlue = Math.round(Math.random() * 256);
+        this.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
+    }
 }
 
 /* black button*/
@@ -79,11 +88,16 @@ btnBlack.addEventListener('click', function changeBrush() {
 });
 
 function blackBrush() {
-    this.style.opacity = '';
-    this.style.backgroundColor = 'black';
+    if (this.classList.contains('hover-to-draw') && !dragging) {
+        this.style.opacity = '';
+        this.style.backgroundColor = 'black';
+    } else if (this.classList.contains('drag-to-draw') && dragging) {
+        this.style.opacity = '';
+        this.style.backgroundColor = 'black';
+    }
 }
 
-btnBlack.click();
+btnRainbow.click();
 
 /* shade button*/
 
@@ -100,8 +114,13 @@ btnShade.addEventListener('click', function () {
 });
 
 function shadeBrush() {
-    this.style.backgroundColor = 'black';
-    this.style.opacity -= -0.1;
+    if (this.classList.contains('hover-to-draw') && !dragging) {
+        this.style.backgroundColor = 'black';
+        this.style.opacity -= -0.1;
+    } else if (this.classList.contains('drag-to-draw') && dragging) {
+        this.style.backgroundColor = 'black';
+        this.style.opacity -= -0.1;
+    }
 }
 
 /* clear button*/
@@ -122,6 +141,15 @@ hoverDraw.addEventListener('click', () => {
 
 dragDraw.addEventListener('click', () => {
     dragAndDrawClassController(hoverDraw, dragDraw, 'hover-to-draw', 'drag-to-draw');
+    const cells = container.querySelectorAll('div');
+});
+
+container.addEventListener('mousedown', function dragTrue() {
+    dragging = true;
+});
+
+container.addEventListener('mouseup', function dragFalse() {
+    dragging = false;
 });
 
 hoverDraw.click();
