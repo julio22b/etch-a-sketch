@@ -185,13 +185,16 @@ makeImageBtn.addEventListener('click', () => {
     }, 5000);
 });
 
-const closeCanvas = document.querySelector('.close-canvas');
-closeCanvas.addEventListener('click', () => {
+const closeCanvasBtn = document.querySelector('.close-canvas');
+closeCanvasBtn.addEventListener('click', closeCanvas);
+window.addEventListener('click', closeCanvas);
+
+function closeCanvas() {
     const canvas = document.querySelector('.canvas');
     canvas.classList.remove('active');
     document.querySelector('.blanket').classList.remove('darken');
     removePastCanvas();
-});
+}
 
 function removePastCanvas() {
     const canvas = document.querySelector('.canvas');
